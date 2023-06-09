@@ -8,8 +8,8 @@ const Tooltip = ({ text }) => {
 
 const Base = styled.div`
   position: absolute;
-  bottom: 100%;
-  right: 0;
+  top: 100%;
+  left: 0;
   transition: opacity 0.3s;
   opacity: 0;
   ${({ text }) =>
