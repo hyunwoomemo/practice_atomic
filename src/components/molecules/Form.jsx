@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Input from "../atoms/Input";
 import ButtonWrapper from "./ButtonWrapper";
 import Tooltip from "../atoms/Tooltip";
+import Title from "../atoms/Title";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Form = ({ inputProps, buttonProps }) => {
   const [email, setEmail] = useState("");
@@ -32,9 +34,13 @@ const Form = ({ inputProps, buttonProps }) => {
 
   const emailError = validateEmail();
   const passwordError = validatePassword();
+  const location = useLocation();
+
+  console.log(location.pathname.slice(1));
 
   return (
     <Base>
+      <Title text={location.pathname.slice(1) === "signin" ? "로그인" : "회원가입"} size="large" />
       {inputProps.map((input) => {
         return (
           <InputWrapper>
