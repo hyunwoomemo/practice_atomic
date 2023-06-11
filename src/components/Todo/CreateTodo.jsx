@@ -16,6 +16,7 @@ const CreateTodo = () => {
       const todos = response.data;
       setTodos(todos);
       console.log(todos);
+      setInputValue("");
     } catch (error) {
       console.log(error);
     }

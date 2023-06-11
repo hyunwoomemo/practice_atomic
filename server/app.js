@@ -63,11 +63,9 @@ app.get('/todos', (req, res) => {
 
 // todo 업데이트
 
-app.put('/todos/:id', (req, res) => {
+app.put('/todos/done/:id', (req, res) => {
   const todoId = req.params.id;
   const { isCompleted } = req.body;
-  console.log(isCompleted)
-
   const todoToUpdate = todos.find(todo => todo.id === parseInt(todoId));
 
   if (todoToUpdate) {
@@ -75,6 +73,26 @@ app.put('/todos/:id', (req, res) => {
   }
 
   res.json(todoToUpdate)
+})
+
+app.put('/todos/edit/:id', (req, res) => {
+  const todoId = req.params.id;
+  const { todo } = req.body;
+  const todoToUpdate = todos.find(todo => todo.id === parseInt(todoId));
+
+  if (todoToUpdate) {
+    todoToUpdate.todo = todo
+  }
+
+  res.json(todoToUpdate)
+})
+
+app.delete('/todos/:id', (req, res) => {
+  const todoId = req.params.id;
+
+  todos = todos.filter((v) => v.id !== parseInt(todoId));
+
+  res.json(todos)
 })
 
 app.listen(port, () => {

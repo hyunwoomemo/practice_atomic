@@ -10,9 +10,10 @@ export const TodoContext = createContext();
 
 const Todo = ({ children }) => {
   const [todos, setTodos] = useState([]);
+  const [edit, setEdit] = useState(false);
 
   return (
-    <TodoContext.Provider value={{ todos, setTodos }}>
+    <TodoContext.Provider value={{ todos, setTodos, edit, setEdit }}>
       <Base>{children}</Base>
     </TodoContext.Provider>
   );
