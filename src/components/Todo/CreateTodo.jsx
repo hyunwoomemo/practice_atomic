@@ -4,15 +4,15 @@ import axios from "axios";
 
 const CreateTodo = () => {
   const { todos, setTodos } = useTodoContext();
+  const [inputValue, setInputValue] = useState("");
 
-  const [todo, setTodo] = useState("");
   const url = "http://localhost:3001";
 
   const handleSubmit = async (e, length) => {
     console.log(length);
     e.preventDefault();
     try {
-      const response = await axios.post(`${url}/todos`, { todo, length });
+      const response = await axios.post(`${url}/todos`, { inputValue, length });
       const todos = response.data;
       setTodos(todos);
       console.log(todos);
@@ -23,7 +23,7 @@ const CreateTodo = () => {
 
   return (
     <form onSubmit={(e) => handleSubmit(e, todos.length)}>
-      <input data-testid="new-todo-input" value={todo} onChange={(e) => setTodo(e.target.value)} />
+      <input data-testid="new-todo-input" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
       <button data-testid="new-todo-add-button">추가</button>
     </form>
   );

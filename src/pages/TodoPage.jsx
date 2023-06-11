@@ -28,7 +28,7 @@ const TodoPage = () => {
     <Todo>
       <Todo.Heading>ToDo List</Todo.Heading>
       <Todo.CreateTodo />
-      <Todo.TodoList></Todo.TodoList>
+      <Todo.TodoList />
     </Todo>
   );
 };

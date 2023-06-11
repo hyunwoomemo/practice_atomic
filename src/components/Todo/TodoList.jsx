@@ -23,7 +23,11 @@ const TodoList = () => {
   return (
     <Base>
       {todos.map((v) => {
-        return <TodoItem>{v.todo}</TodoItem>;
+        return (
+          <TodoItem key={v.id} id={v.id} completed={v.isCompleted}>
+            {v.todo}
+          </TodoItem>
+        );
       })}
     </Base>
   );

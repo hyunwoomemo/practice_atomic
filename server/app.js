@@ -46,10 +46,10 @@ app.post('/auth/signin', (req, res) => {
 })
 
 app.post('/todos', (req, res) => {
-  const { todo, length } = req.body;
+  const { inputValue, length } = req.body;
   todos.push({
     'id': length + 1,
-    'todo': todo,
+    'todo': inputValue,
     "isCompleted": false,
     "userId": 1,
   })
@@ -59,6 +59,22 @@ app.post('/todos', (req, res) => {
 app.get('/todos', (req, res) => {
   console.log(todos)
   res.json(todos)
+})
+
+// todo 업데이트
+
+app.put('/todos/:id', (req, res) => {
+  const todoId = req.params.id;
+  const { isCompleted } = req.body;
+  console.log(isCompleted)
+
+  const todoToUpdate = todos.find(todo => todo.id === parseInt(todoId));
+
+  if (todoToUpdate) {
+    todoToUpdate.isCompleted = isCompleted
+  }
+
+  res.json(todoToUpdate)
 })
 
 app.listen(port, () => {
